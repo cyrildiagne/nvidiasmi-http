@@ -1,0 +1,6 @@
+.kuda
+README.md
+*.pyc
+*.pyo
+*.pyd
+__pycache__

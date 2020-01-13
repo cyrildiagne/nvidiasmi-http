@@ -1,0 +1,41 @@
+kudaManifestVersion: v1alpha1
+
+# Name of the API.
+name: hello-gpu
+
+# (Optional) Version of the API.
+version: 0.1.0
+
+# `deploy` is the config used when running `kuda deploy`.
+# It has sensible defaults but you can override all the properpties.
+deploy:
+  dockerfile: ./Dockerfile
+
+# (Optional) `dev` is used when running `kuda dev`.
+# It inherits all properties from 'deploy' which you can override individually.
+dev:
+  # Use python3 to start the Flask dev server rather than gunicorn.
+  entrypoint:
+    command: python3
+    args: ["main.py"]
+  # Live sync all python files.
+  sync:
+    - "**/*.py"
+  # Set FLASK_ENV to "development" to enable Flask debugger & live reload.
+  env:
+    - name: FLASK_ENV
+      value: development
+
+# (Optional) `paths` lets you specify how clients interact with the API.
+# It follows the OpenAPI 3.0 specification.
+# It is only required when publishing to a registry.
+paths:
+  /:
+    get:
+      responses:
+        "200":
+          description: The output of nvidia-smi
+          content:
+            text/plain:
+              schema:
+                type: string
