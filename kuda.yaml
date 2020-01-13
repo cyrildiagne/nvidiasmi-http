@@ -1,7 +1,7 @@
 kudaManifestVersion: v1alpha1
 
 # Name of the API.
-name: hello-gpu
+name: nvidiasmi-http
 
 # (Optional) Version of the API.
 version: 0.1.0
